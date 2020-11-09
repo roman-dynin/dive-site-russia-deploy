@@ -13,6 +13,7 @@ services:
       - 5432:5432
 
   api:
+    container_name: dive-site-russia-api
     build:
       context: ../dive-site-russia-api
       dockerfile: Dockerfile
