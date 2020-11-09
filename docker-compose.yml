@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+
+  postgres:
+    image: postgres:11
+    restart: unless-stopped
+    env_file:
+      - ./docker/postgres/.env
+    volumes:
+      - ../dive-site-russia-postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  api:
+    build:
+      context: ../dive-site-russia-api
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - ../dive-site-russia-api/.env
+    expose:
+      - 9000
+    depends_on:
+      - postgres
+
+  frontend:
+    build:
+      context: ../dive-site-russia-frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - ../dive-site-russia-frontend/.env
+    expose:
+      - 3000
+    depends_on:
+      - api
+
+  nginx:
+    image: nginx:1.19.4
+    restart: unless-stopped
+    volumes:
+      - ../dive-site-russia-api/public:/var/www/api/public
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 80:80
+      - 81:81
+    depends_on:
+      - api
+      - frontend
