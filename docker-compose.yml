@@ -58,3 +58,13 @@ services:
       - ../dive-site-russia-drone-data:/var/lib/drone
     ports:
       - 82:80
+
+  drone-runner:
+    image: drone/drone-runner-docker:1
+    restart: unless-stopped
+    env_file:
+      - ./docker/drone-runner/.env
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 83:3000
