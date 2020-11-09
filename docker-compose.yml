@@ -48,3 +48,13 @@ services:
     depends_on:
       - api
       - frontend
+
+  drone:
+    image: drone/drone:1
+    restart: unless-stopped
+    env_file:
+      - ./docker/drone/.env
+    volumes:
+      - ../dive-site-russia-drone-data:/var/lib/drone
+    ports:
+      - 82:80
