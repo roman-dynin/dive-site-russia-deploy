@@ -3,6 +3,16 @@
     "id": "deploy",
     "execute-command": "./deploy.sh",
     "command-working-directory": "./",
+    "pass-arguments-to-command": [
+      {
+        "source": "payload",
+        "name": "repository.name"
+      },
+      {
+        "source": "payload",
+        "name": "head_commit.id"
+      }
+    ],
     "trigger-rule": {
       "match": {
         "type": "value",
