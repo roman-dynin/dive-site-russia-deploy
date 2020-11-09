@@ -13,10 +13,10 @@ services:
       - 5432:5432
 
   api:
-    container_name: dive-site-russia-api
     build:
       context: ../dive-site-russia-api
       dockerfile: Dockerfile
+    image: dive-site-russia-api:latest
     restart: unless-stopped
     env_file:
       - ../dive-site-russia-api/.env
@@ -29,6 +29,7 @@ services:
     build:
       context: ../dive-site-russia-frontend
       dockerfile: Dockerfile
+    image: dive-site-russia-frontend:latest
     restart: unless-stopped
     env_file:
       - ../dive-site-russia-frontend/.env
