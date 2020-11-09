@@ -6,4 +6,4 @@ git pull
 
 cd ../dive-site-russia-deploy
 
-docker-compose "up -d --build --no-deps $1"
+docker-compose up -d --build --no-deps ${1}
