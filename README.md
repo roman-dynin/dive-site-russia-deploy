@@ -1,5 +1,11 @@
 # Места для погружений
 
+Сторонние пакеты:
+
+https://github.com/fabianonline/telegram.sh
+
+https://github.com/adnanh/webhook
+
 Генерация сертификата:
 
 ```
