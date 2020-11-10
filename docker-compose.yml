@@ -42,9 +42,10 @@ services:
     volumes:
       - ../dive-site-russia-api/public:/var/www/dive-site-russia-api/public
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - /etc/letsencrypt:/etc/letsencrypt
     ports:
       - 80:80
-      - 81:81
+      - 443:443
     depends_on:
       - dive-site-russia-api
       - dive-site-russia-frontend
